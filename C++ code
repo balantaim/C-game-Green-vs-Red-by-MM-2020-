@@ -18,9 +18,7 @@ void genZero()
                 cout << red;
             }
             else { cout << green; }
-            if ((hor == 1 && col == 0)) { }
-        }
-       
+        }    
         cout << endl;
     }
 }
@@ -85,7 +83,12 @@ int main()
                     else { array[i][j] = { 1 }; array2[i][j] = { 1 };
                     }
                 }
-                cout << array[i][j] << endl;
+                cout << endl;
+                    cout << array[i][j];
+                    if (j == 2) {
+                        cout << endl;
+                    }
+                
                 /*Generation rules*/
 
                 int proba = 0;
@@ -144,8 +147,9 @@ int main()
                         
                     }
                     /*2*/
-                    proba = 0;
-                    if (array2[i][j] == 0) {
+                    /*proba = 0;*/
+                    else if(array2[i][j] == 0) {
+                        proba = 0;
                         /*cross*/
                         if (i - 1 >= 0) {
                             if (array2[i - 1][j] == 1)
@@ -192,13 +196,14 @@ int main()
                             }
                         }
                         /*final*/
-                        if (!(proba == 3 || proba==6)) {
+                        if ((proba != 3 && proba !=6)) {
                                 array[i][j] = 0;
                         }
                     }
                     /*3*/
+                    /*proba = 0;*/
+                    else if (array2[i][j] == 1) {
                     proba = 0;
-                    if (array2[i][j] == 1) {
                         /*cross*/
                         if (i - 1 >= 0) {
                             if (array2[i - 1][j] == 1)
@@ -245,13 +250,14 @@ int main()
                             }
                         }
                         /*final*/
-                        if (!(proba == 2 || proba==3 ||proba== 6)) {
+                        if ((proba != 2) && (proba !=3) && (proba != 6)) {
                                 array[i][j] = 0;
                         }
                     }
                     /*4*/
+                    /*proba = 0;*/
+                    else if (array2[i][j] == 1) {
                     proba = 0;
-                    if (array2[i][j] == 1) {
                         /*cross*/
                         if (i - 1 >= 0) {
                             if (array2[i - 1][j] == 1)
@@ -302,29 +308,23 @@ int main()
                                 array[i][j] = 1;
                          }
                     }
-
                 }
                 
             }
         }
-        /*Green score sum*/
-        if (array[1][0] == 1) { sum++; }
-        /*Arr1=Arr2*/
+        
+        /*Arr2=Arr1*/
         for (int k = 0; k < x; k++) {
             for (int l = 0; l < y; l++) {
                 array2[k][l] = array[k][l];
             }
         }
+        /*Green score sum*/
+        if (array2[1][0] == 1) { sum++; }
     }
-        cout << array[1][0] << endl;
-
-
+        cout << "-" << array[1][0]<< "-" << endl;
 
         cout << "1, 0, " << N << endl;
         cout << "Expected result: Green count " << sum << endl;
-
-
-
-    
 
 }
