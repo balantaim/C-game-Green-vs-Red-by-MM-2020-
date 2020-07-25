@@ -2,13 +2,12 @@
 //
 
 #include <iostream>
-
-
 using namespace std;
 int x,y,sum=0, c = 0, N;
 
 void genZero()
 {
+    /*Function who print the gaming table (OOP)*/
     for (int hor=0; hor < x; hor++) {
 
         for (int col=0; col < y; col++) {
@@ -23,26 +22,8 @@ void genZero()
 }
 
 
-int genNew()
-{
-    int c=0;
-    int array[10][10];
-    for (int i = 0; i < x; i++)
-    {
-        for (int j = 0; j < y; j++)
-        {
-            if (i % 2 == 0) {
-                array[i][j] = { 0 };
-            }
-            else { array[i][j] = { 1 }; }
-        }
-    }
-    return (c);
-}
-
 int main()
 {
-
     cout << "You are playing Green vs Red! Choice your grid lenght" << endl;
     cout << "insert number x:" << endl;
     cin >> x;
@@ -60,13 +41,12 @@ int main()
     while (!(N > 0)) {
         cin >> N;
     }
-    cout << "Grid: " << x << "x" << y << endl;
+    cout << "Grid: " << x << "x" << y << endl << endl;
 
     genZero();
 
-
-    int array[10][10];
-    int array2[10][10];
+    int array[50][50];
+    int array2[50][50];
     for (int ii = 0; ii < x; ii++)
     {
         for (int jj = 0; jj < y; jj++)
@@ -79,7 +59,6 @@ int main()
             else {
                     array[ii][jj] = { 2 }; array2[ii][jj] = { 2 };
             }
-            
         }
     }
     int proba = 0;
@@ -87,249 +66,107 @@ int main()
     {
         for (int i = 0; i < x; i++)
         {
-         
             for (int j = 0; j < y; j++)
             {
-               cout << array[i][j];
+             /*  cout << array[i][j];
                if (j == (y-1)) {
                         cout << endl;
-               }
+               }*/
                 
-                   /*Generation rules*/
-                   proba = 0;
-                
-                   /*1*/
+             /*Generation rules*/
+             proba = 0;
+                 /*Rule-1*/
                 if (array2[i][j] == 0) {
-                       /*cross*/
+                 /*cross*/
                     //if ((i - 1) >= 0 && (j - 1) >= 0 && (j + 1) <= (1 - y) && (i + 1) <= (x - 1)) {
                        if (array2[i - 1][j] == 2)
                        {
                                proba++;
                        }
-
-
                        if (array2[i + 1][j] == 2) {
                            proba++;
                        }
-
-
                        if (array2[i][j - 1] == 2) {
                            proba++;
                        }
-
-
                        if (array2[i][j + 1] == 2) {
                            proba++;
                        }
-
                        /*diag*/
-
                        if (array2[i - 1][j - 1] == 2)
                        {
                            proba++;
                        }
-
-
                        if (array2[i + 1][j - 1] == 2)
                        {
                            proba++;
                        }
-
                        if (array2[i - 1][j + 1] == 2)
                        {
                            proba++;
                        }
-
                        if (array2[i + 1][j + 1] == 2)
                        {
                            proba++;
                        }
-
                        /*final*/
-
                        if (proba == 3 || proba == 6) {
                            array[i][j] = 2;
                        }
-                       /*2*/
-                       /*proba = 0;*/
+                /*Rule-2*/
                        else if (proba!=3 &&proba!=6) {
-                           /* cout << "tuk" << proba;*/
+                          
                            array[i][j] = 0; proba = 0;
                        }
-                       
                    // }
-                }
-                        
-               //if(array2[i][j] == 0) {
-                        //    proba = 0;
-                        //    /*cross*/
-                        //    if (i - 1 >= 0) {
-                        //        if (array2[i - 1][j] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    if ((i + 1) <= (x + 1)) {
-                        //        if (array2[i + 1][j] == 1) {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    if (j - 1 >= 0) {
-                        //        if (array2[i][j - 1] == 1) {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    if ((j + 1) <= (y + 1)) {
-                        //        if (array2[i][j + 1] == 1) {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    /*diag*/
-                        //    if ((i - 1) >= 0 && (j - 1) >= 0) {
-                        //        if (array2[i - 1][j - 1] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    if ((i + 1) >= x && (j - 1) >= 0) {
-                        //        if (array2[i + 1][j - 1] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    } if ((i - 1) >= 0 && (j + 1) >= y) {
-                        //        if (array2[i - 1][j + 1] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    } if ((i + 1) >= x && (j + 1) >= y) {
-                        //        if (array2[i + 1][j + 1] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    /*final*/
-                        //    if ((proba != 3 && proba !=6)) {
-                        //            array[i][j] = 0;
-                        //    }
-                        //}
-               /*3*/
+                }  
+               /*Rule-3*/
                proba = 0;
                if (array2[i][j] == 2) {
-               
                /*cross*/
                   // if ((i - 1) >= 0 && (j - 1) >= 0 && (j + 1) <= (1-y) && (i + 1) <= (x-1)) {
-
                        if (array2[i - 1][j] == 2)
                        {
                            proba++;
                        }
-
-
                        if (array2[i + 1][j] == 2) {
                            proba++;
                        }
-
-
                        if (array2[i][j - 1] == 2) {
                            proba++;
                        }
-
-
                        if (array2[i][j + 1] == 2) {
                            proba++;
                        }
-
                        /*diag*/
-
                        if (array2[i - 1][j - 1] == 2)
                        {
                            proba++;
                        }
-
-
                        if (array2[i + 1][j - 1] == 2)
                        {
                            proba++;
                        }
-
                        if (array2[i - 1][j + 1] == 2)
                        {
                            proba++;
                        }
-
                        if (array2[i + 1][j + 1] == 2)
                        {
                            proba++;
                        }
-
-
                        /*final*/
                        if ((proba == 0) || (proba == 1) || (proba == 4) || (proba == 5) || (proba == 7) || (proba == 8)) {
                            array[i][j] = 0;
                        }
-                       /*4*/
-                       /*proba = 0;*/
+               /*Rule-4*/
                        else if (proba==2 || proba==3 || proba==6) {
                            array[i][j] = 2; proba = 0;
                        }
                        
                   // }
                }
-                       
-               //if (array2[i][j] == 1) {
-                        //proba = 0;
-                        //    /*cross*/
-                        //    if (i - 1 >= 0) {
-                        //        if (array2[i - 1][j] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    if ((i + 1) <= (x + 1)) {
-                        //        if (array2[i + 1][j] == 1) {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    if (j - 1 >= 0) {
-                        //        if (array2[i][j - 1] == 1) {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    if ((j + 1) <= (y + 1)) {
-                        //        if (array2[i][j + 1] == 1) {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    /*diag*/
-                        //    if ((i - 1) >= 0 && (j - 1) >= 0) {
-                        //        if (array2[i - 1][j - 1] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    if ((i + 1) >= x && (j - 1) >= 0) {
-                        //        if (array2[i + 1][j - 1] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    } if ((i - 1) >= 0 && (j + 1) >= y) {
-                        //        if (array2[i - 1][j + 1] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    } if ((i + 1) >= x && (j + 1) >= y) {
-                        //        if (array2[i + 1][j + 1] == 1)
-                        //        {
-                        //            proba++;
-                        //        }
-                        //    }
-                        //    /*final*/
-                        //     if ((proba == 2 || proba==3 ||proba== 6)) {
-                        //            array[i][j] = 1;
-                        //     }
-                        //}
-                
-                
+               
             }
         }
         
@@ -342,9 +179,7 @@ int main()
         /*Green score sum*/
         if (array2[1][0] == 2) { sum++; }
     }
-        cout <<endl<< "-" << array[1][0]<< "-" << endl;
-
-        cout << "1, 0, " << N << endl;
-        cout << "Expected result: Green count " << sum << endl;
-
+ cout <<endl<< "-" << array[1][0]<< "-" << endl;
+ cout << "1, 0, " << N << endl;
+ cout << "Expected result: Green count " << sum << endl;
 }
