@@ -1,5 +1,4 @@
 // Solution (MM 2020).cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
 using namespace std;
@@ -7,7 +6,7 @@ int x,y,sum=0, c = 0, N;
 
 void genZero()
 {
-    /*Function who print tupe string of the gaming table (OOP)*/
+    /*Function who print tupe string of the gaming table*/
     /*Game example 1!*/
     for (int hor=0; hor < x; hor++) {
 
@@ -23,7 +22,7 @@ void genZero()
 }
 
 int genNext() {
-    /*Function for next generations(OOP)*/
+    /*Function for next generations*/
     int array[100][100];
     int array2[100][100];
     for (int ii = 0; ii < x; ii++)
@@ -35,7 +34,7 @@ int genNext() {
                 array[ii][jj] = { 0 };
                 array2[ii][jj] = { 0 };
             }
-            /*I change number "1" with "2" to remove problem with "true=1"*/
+            /*0 and 2 represent green and red*/
             else {
                 array[ii][jj] = { 2 }; array2[ii][jj] = { 2 };
             }
